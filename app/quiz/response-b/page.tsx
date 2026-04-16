@@ -74,7 +74,7 @@ export default function ResponseB() {
               data-cal-link="aurorarecovery/halotherapy"
               data-cal-namespace="halotherapy"
               data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":true,"theme":"light"}'
-              className="flex-1 bg-accent hover:bg-accent/90 text-accent-foreground py-6 text-lg font-semibold rounded-full inline-flex items-center justify-center gap-2"
+              className="flex-1 bg-accent hover:bg-accent/90 text-accent-foreground px-6 py-6 text-lg font-semibold rounded-full inline-flex items-center justify-center gap-2"
             >
               <Calendar className="w-5 h-5" />
               Get a Free 15-Minute Salt Therapy Consultation
