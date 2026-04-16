@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import { useState } from 'react';
 import { useRouter } from '@/lib/router';
 import { Button } from '@/components/ui/button';
 import { useQuiz } from '@/lib/quiz-context';
@@ -10,6 +11,7 @@ import { trackMetaEvent } from '@/components/meta-pixel';
 export default function ResponseA() {
   const router = useRouter();
   const { answers } = useQuiz();
+  const [showVideo, setShowVideo] = useState(false);
 
   useEffect(() => {
     trackMetaEvent('ViewContent', {
@@ -77,7 +79,7 @@ export default function ResponseA() {
         {/* CTA */}
         <div className="grid gap-4 md:grid-cols-2">
           <Button
-            onClick={() => router.push('/#why-halotherapy-works')}
+            onClick={() => setShowVideo((current) => !current)}
             variant="outline"
             className="w-full py-6 rounded-full"
           >
@@ -94,6 +96,28 @@ export default function ResponseA() {
             Get a Free 15-Minute Salt Therapy Consultation
           </button>
         </div>
+
+        {showVideo && (
+          <div className="bg-card border border-border rounded-lg overflow-hidden aspect-video">
+            <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0 }}>
+              <iframe
+                src="https://www.loom.com/embed/c4d4bbc4f75843c59ca0579a4b6abd7d"
+                frameBorder="0"
+                allowFullScreen
+                style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+                title="How Halotherapy Works"
+              />
+            </div>
+          </div>
+        )}
+
+        <Button
+          onClick={() => router.push('/quiz/question-4')}
+          variant="outline"
+          className="w-full py-6 rounded-full"
+        >
+          Back to Previous Question
+        </Button>
 
         {/* Info Section */}
         <div className="bg-card border border-border rounded-lg p-6 space-y-3">

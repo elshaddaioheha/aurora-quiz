@@ -117,6 +117,14 @@ export default function ResponseC() {
             <li>A clear understanding of what to expect before treatment begins</li>
           </ul>
         </div>
+
+        <Button
+          onClick={() => router.push('/quiz/question-4')}
+          variant="outline"
+          className="w-full py-6 rounded-full"
+        >
+          Back to Previous Question
+        </Button>
       </div>
 
     </main>

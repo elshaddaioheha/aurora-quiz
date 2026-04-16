@@ -121,6 +121,14 @@ export default function ResponseB() {
             <li>Use the consultation to decide whether halotherapy fits your goals</li>
           </ol>
         </div>
+
+        <Button
+          onClick={() => router.push('/quiz/question-4')}
+          variant="outline"
+          className="w-full py-6 rounded-full"
+        >
+          Back to Previous Question
+        </Button>
       </div>
 
     </main>
