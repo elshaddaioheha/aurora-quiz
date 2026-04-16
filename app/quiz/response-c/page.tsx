@@ -4,14 +4,12 @@ import { useEffect } from 'react';
 import { useRouter } from '@/lib/router';
 import { Button } from '@/components/ui/button';
 import { useQuiz } from '@/lib/quiz-context';
-import { useBooking } from '@/lib/booking-context';
 import { Calendar } from 'lucide-react';
 import { trackMetaEvent } from '@/components/meta-pixel';
 
 export default function ResponseC() {
   const router = useRouter();
   const { answers } = useQuiz();
-  const { updateData } = useBooking();
 
   useEffect(() => {
     trackMetaEvent('ViewContent', {
@@ -27,8 +25,6 @@ export default function ResponseC() {
       content_category: 'booking',
       response_flow: 'C',
     });
-    updateData({ service: 'consultation' });
-    router.push('/booking/contact');
   };
 
   return (
@@ -80,13 +76,16 @@ export default function ResponseC() {
 
         {/* CTA */}
         <div className="flex gap-4">
-          <Button
+          <button
             onClick={handleBookingClick}
+            data-cal-link="aurorarecovery/halotherapy"
+            data-cal-namespace="halotherapy"
+            data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":true,"theme":"light"}'
             className="flex-1 bg-accent hover:bg-accent/90 text-accent-foreground py-6 text-lg font-semibold rounded-full inline-flex items-center justify-center gap-2"
           >
             <Calendar className="w-5 h-5" />
             Book Your First Session Now
-          </Button>
+          </button>
           <Button
             onClick={() => router.push('/quiz')}
             variant="outline"

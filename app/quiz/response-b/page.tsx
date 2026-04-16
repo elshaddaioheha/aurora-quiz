@@ -5,14 +5,12 @@ import { useState } from 'react';
 import { useRouter } from '@/lib/router';
 import { Button } from '@/components/ui/button';
 import { useQuiz } from '@/lib/quiz-context';
-import { useBooking } from '@/lib/booking-context';
 import { Calendar } from 'lucide-react';
 import { trackMetaEvent } from '@/components/meta-pixel';
 
 export default function ResponseB() {
   const router = useRouter();
   const { answers } = useQuiz();
-  const { updateData } = useBooking();
   const [showVideo, setShowVideo] = useState(false);
 
   useEffect(() => {
@@ -29,8 +27,6 @@ export default function ResponseB() {
       content_category: 'booking',
       response_flow: 'B',
     });
-    updateData({ service: 'consultation' });
-    router.push('/booking/contact');
   };
 
   return (
@@ -73,13 +69,16 @@ export default function ResponseB() {
             >
               Here&apos;s exactly what your first session looks like
             </Button>
-            <Button
+            <button
               onClick={handleConsultationClick}
+              data-cal-link="aurorarecovery/halotherapy"
+              data-cal-namespace="halotherapy"
+              data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":true,"theme":"light"}'
               className="flex-1 bg-accent hover:bg-accent/90 text-accent-foreground py-6 text-lg font-semibold rounded-full inline-flex items-center justify-center gap-2"
             >
               <Calendar className="w-5 h-5" />
               Get a Free 15-Minute Salt Therapy Consultation
-            </Button>
+            </button>
           </div>
 
           {showVideo && (

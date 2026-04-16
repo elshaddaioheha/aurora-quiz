@@ -4,14 +4,12 @@ import { useEffect } from 'react';
 import { useRouter } from '@/lib/router';
 import { Button } from '@/components/ui/button';
 import { useQuiz } from '@/lib/quiz-context';
-import { useBooking } from '@/lib/booking-context';
 import { Calendar } from 'lucide-react';
 import { trackMetaEvent } from '@/components/meta-pixel';
 
 export default function ResponseA() {
   const router = useRouter();
   const { answers } = useQuiz();
-  const { updateData } = useBooking();
 
   useEffect(() => {
     trackMetaEvent('ViewContent', {
@@ -27,8 +25,6 @@ export default function ResponseA() {
       content_category: 'booking',
       response_flow: 'A',
     });
-    updateData({ service: 'consultation' });
-    router.push('/booking/contact');
   };
 
   return (
@@ -87,13 +83,16 @@ export default function ResponseA() {
           >
             Learn how halo therapy works
           </Button>
-          <Button
+          <button
             onClick={handleConsultationClick}
+            data-cal-link="aurorarecovery/halotherapy"
+            data-cal-namespace="halotherapy"
+            data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":true,"theme":"light"}'
             className="w-full bg-accent hover:bg-accent/90 text-accent-foreground py-6 text-lg font-semibold rounded-full inline-flex items-center justify-center gap-2"
           >
             <Calendar className="w-5 h-5" />
             Get a Free 15-Minute Salt Therapy Consultation
-          </Button>
+          </button>
         </div>
 
         {/* Info Section */}

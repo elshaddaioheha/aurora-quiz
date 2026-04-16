@@ -1,15 +1,19 @@
 'use client';
 
+import { useRouter as useNextRouter } from 'next/navigation';
+
 export function useRouter() {
+  const router = useNextRouter();
+
   return {
     push: (href: string) => {
-      window.location.assign(href);
+      router.push(href);
     },
     replace: (href: string) => {
-      window.location.replace(href);
+      router.replace(href);
     },
     back: () => {
-      window.history.back();
+      router.back();
     },
   };
 }
