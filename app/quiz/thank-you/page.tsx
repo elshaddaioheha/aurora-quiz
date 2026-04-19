@@ -1,15 +1,43 @@
 'use client';
 
+import { useEffect } from 'react';
 import { useRouter } from '@/lib/router';
 import { Button } from '@/components/ui/button';
 import { CheckCircle, Mail, Phone, MapPin } from 'lucide-react';
+import Script from 'next/script';
+
+const PIXEL_ID = '2498497057335985';
 
 export default function ThankYou() {
   const router = useRouter();
 
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.fbq) {
+      window.fbq('track', 'Lead');
+    }
+  }, []);
+
   return (
-    <main className="min-h-screen bg-background text-foreground py-12">
-      <div className="max-w-2xl mx-auto px-4 space-y-8">
+    <main className="min-h-screen bg-background text-foreground py-8 sm:py-12">
+      {/* Facebook Pixel Lead Event */}
+      <Script id="meta-pixel-lead" strategy="afterInteractive">
+        {`
+          if(typeof fbq !== 'undefined') {
+            fbq('track', 'Lead');
+          }
+        `}
+      </Script>
+      <noscript>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          height="1"
+          width="1"
+          style={{ display: 'none' }}
+          src={`https://www.facebook.com/tr?id=${PIXEL_ID}&ev=Lead&noscript=1`}
+          alt=""
+        />
+      </noscript>
+      <div className="max-w-2xl mx-auto px-4 space-y-6 sm:space-y-8">
         {/* Company Name */}
         <div className="text-center pb-4 border-b border-border">
           <h2 className="text-2xl font-bold text-accent">Aurora Recovery</h2>
@@ -21,7 +49,7 @@ export default function ThankYou() {
           <div className="flex justify-center">
             <CheckCircle className="w-16 h-16 text-accent" />
           </div>
-          <h1 className="text-4xl md:text-5xl font-serif font-bold text-foreground">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-foreground">
             You&apos;re All Set!
           </h1>
           <p className="text-lg text-muted-foreground">
@@ -43,7 +71,7 @@ export default function ThankYou() {
         </div>
 
         {/* Contact Information */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
           {[
             {
               icon: Phone,
@@ -66,7 +94,7 @@ export default function ThankYou() {
           ].map((contact, idx) => {
             const Icon = contact.icon;
             return (
-              <div key={idx} className="bg-card border border-border rounded-lg p-6 text-center space-y-2">
+              <div key={idx} className="bg-card border border-border rounded-lg p-4 sm:p-6 text-center space-y-2">
                 <Icon className="w-8 h-8 text-accent mx-auto" />
                 <h3 className="font-semibold text-foreground">{contact.label}</h3>
                 <p className="text-sm font-medium text-foreground">{contact.value}</p>
@@ -77,7 +105,7 @@ export default function ThankYou() {
         </div>
 
         {/* CTA */}
-        <div className="flex gap-4 pt-8">
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-6 sm:pt-8">
           <Button
             onClick={() => router.push('/')}
             className="flex-1 bg-accent hover:bg-accent/90 text-accent-foreground py-6 text-lg font-semibold rounded-full"

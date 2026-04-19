@@ -1,55 +1,55 @@
 'use client';
 
-import { useEffect } from 'react';
+import Script from 'next/script';
+
+const PIXEL_ID = '2498497057335985';
 
 declare global {
   interface Window {
-    fbq?: ((...args: unknown[]) => void) & { q?: unknown[][]; loaded?: boolean; version?: string; push?: (...args: unknown[]) => void };
+    fbq?: ((...args: unknown[]) => void) & {
+      callMethod?: (...args: unknown[]) => void;
+      queue?: unknown[][];
+      loaded?: boolean;
+      version?: string;
+      push?: (...args: unknown[]) => void;
+    };
     _fbq?: typeof window.fbq;
-    __metaPixelInitialized?: boolean;
   }
-}
-
-const META_PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID;
-
-function initializeMetaPixel(pixelId: string) {
-  if (typeof window === 'undefined' || window.__metaPixelInitialized) {
-    return;
-  }
-
-  window.fbq = function fbq(...args: unknown[]) {
-    window.fbq?.q?.push(args);
-  } as Window['fbq'];
-
-  window.fbq.q = window.fbq.q || [];
-  window._fbq = window.fbq;
-
-  const script = document.createElement('script');
-  script.async = true;
-  script.src = 'https://connect.facebook.net/en_US/fbevents.js';
-  document.head.appendChild(script);
-
-  window.fbq('init', pixelId);
-  window.fbq('track', 'PageView');
-  window.__metaPixelInitialized = true;
 }
 
 export function trackMetaEvent(eventName: string, parameters?: Record<string, unknown>) {
-  if (typeof window === 'undefined' || !window.fbq) {
-    return;
+  if (typeof window !== 'undefined' && window.fbq) {
+    window.fbq('track', eventName, parameters || {});
   }
-
-  window.fbq('track', eventName, parameters || {});
 }
 
 export default function MetaPixel() {
-  useEffect(() => {
-    if (!META_PIXEL_ID) {
-      return;
-    }
-
-    initializeMetaPixel(META_PIXEL_ID);
-  }, []);
-
-  return null;
+  return (
+    <>
+      <Script id="meta-pixel-base" strategy="afterInteractive">
+        {`
+          !function(f,b,e,v,n,t,s)
+          {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+          n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+          if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+          n.queue=[];t=b.createElement(e);t.async=!0;
+          t.src=v;s=b.getElementsByTagName(e)[0];
+          s.parentNode.insertBefore(t,s)}(window,document,'script',
+          'https://connect.facebook.net/en_US/fbevents.js');
+          fbq('init', '${PIXEL_ID}');
+          fbq('track', 'PageView');
+        `}
+      </Script>
+      <noscript>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          height="1"
+          width="1"
+          style={{ display: 'none' }}
+          src={`https://www.facebook.com/tr?id=${PIXEL_ID}&ev=PageView&noscript=1`}
+          alt=""
+        />
+      </noscript>
+    </>
+  );
 }

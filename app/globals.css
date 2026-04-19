@@ -115,11 +115,36 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
+
 @layer base {
+  html {
+    /* Prevent horizontal overflow on mobile */
+    overflow-x: hidden;
+  }
+
   * {
     @apply border-border outline-ring/50;
+    /* Improve tap targets on touch devices */
+    -webkit-tap-highlight-color: transparent;
   }
+
   body {
     @apply bg-background text-foreground;
+    /* Prevent horizontal scroll */
+    overflow-x: hidden;
+    /* Better font rendering on mobile */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Make all images responsive by default */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Improve button touch targets on mobile */
+  button {
+    touch-action: manipulation;
   }
 }

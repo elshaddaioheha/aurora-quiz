@@ -1,10 +1,32 @@
 'use client';
 
 import { useRouter } from '@/lib/router';
-import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { useQuiz } from '@/lib/quiz-context';
 import { CheckCircle2 } from 'lucide-react';
+
+const BULLETS = [
+  'Real relief for chronic allergies, congestion, and breathing issues — without inhalers that wear off',
+  'Calmer, clearer skin without prescription creams or steroid treatments',
+  'A complete mental reset without medication or supplements',
+  '45 minutes in a natural salt room — no side effects, no recovery time',
+  'Your first session comes with a free 15-minute consultation',
+];
+
+const BENEFITS = [
+  {
+    title: 'Natural Relief',
+    description: 'Drug-free, side effect-free healing with salt therapy',
+  },
+  {
+    title: 'Complete Wellness',
+    description: 'Address respiratory, skin, and mental health in one session',
+  },
+  {
+    title: 'Lasting Clarity',
+    description: 'Real, sustained improvements without constant treatment',
+  },
+];
 
 export default function LandingPage() {
   const router = useRouter();
@@ -16,114 +38,205 @@ export default function LandingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-background via-background to-secondary/20 flex items-center justify-center px-4">
-      <div className="max-w-2xl w-full text-center space-y-8">
-        {/* Header */}
-        <div className="space-y-4">
-          <h1 className="text-4xl md:text-5xl font-bold text-foreground leading-tight">
-            Still Managing Symptoms That Never Fully Go Away?
-          </h1>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-xl mx-auto leading-relaxed">
-            Whether it&apos;s allergies, skin flare-ups, or a mind that won&apos;t switch off, find out if
-            halotherapy is the natural, drug-free relief you&apos;ve been looking for. Takes 10 seconds
-          </p>
-        </div>
+    /* Outer wrapper: flex column, full-height, centred, no horizontal overflow */
+    <div
+      style={{
+        minHeight: '100vh',
+        width: '100%',
+        overflowX: 'hidden',
+        display: 'flex',
+        alignItems: 'flex-start',
+        justifyContent: 'center',
+        padding: '40px 16px 48px',
+        boxSizing: 'border-box',
+      }}
+      className="bg-gradient-to-br from-background via-background to-secondary/20"
+    >
+      {/* Inner content column — max 672 px, full width on mobile */}
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          width: '100%',
+          maxWidth: '672px',
+          gap: '0',
+        }}
+      >
+        {/* ── HERO HEADLINE ── */}
+        <h1
+          style={{
+            fontSize: 'clamp(1.6rem, 5vw, 3rem)',
+            fontWeight: 700,
+            lineHeight: 1.25,
+            textAlign: 'center',
+            marginBottom: '16px',
+            wordBreak: 'break-word',
+            overflowWrap: 'break-word',
+            width: '100%',
+          }}
+          className="text-foreground"
+        >
+          Still Managing Symptoms That Never Fully Go Away?
+        </h1>
 
-        {/* CTA Button */}
-        <div className="pt-4">
+        {/* ── SUBHEADLINE ── */}
+        <p
+          style={{
+            fontSize: 'clamp(0.95rem, 2.5vw, 1.2rem)',
+            lineHeight: 1.65,
+            textAlign: 'center',
+            maxWidth: '560px',
+            marginBottom: '28px',
+            wordBreak: 'break-word',
+            overflowWrap: 'break-word',
+            width: '100%',
+          }}
+          className="text-muted-foreground"
+        >
+          Whether it&apos;s allergies, skin flare-ups, or a mind that won&apos;t switch off,
+          find out if halotherapy is the natural, drug-free relief you&apos;ve been
+          looking for. Takes 10 seconds.
+        </p>
+
+        {/* ── TOP CTA BUTTON ── */}
+        <div style={{ width: '100%', marginBottom: '32px' }}>
           <Button
             size="lg"
             onClick={handleStartQuiz}
-            className="h-12 px-8 text-base font-semibold hover:shadow-lg transition-shadow"
+            style={{
+              width: '100%',
+              minHeight: '52px',
+              fontSize: 'clamp(0.8rem, 2.5vw, 1rem)',
+              fontWeight: 600,
+              whiteSpace: 'normal',
+              lineHeight: 1.3,
+              padding: '12px 20px',
+              wordBreak: 'break-word',
+            }}
+            className="hover:shadow-lg transition-shadow"
           >
             👉 Click here to find out if halo therapy is for you 👈
           </Button>
         </div>
 
-        {/* Bullet Points Section */}
-        <div className="pt-8 space-y-3 text-left max-w-xl mx-auto">
-          <div className="flex items-start gap-3">
-            <CheckCircle2 className="w-6 h-6 text-accent shrink-0 mt-0.5" />
-            <p className="text-muted-foreground">
-              Real relief for chronic allergies, congestion, and breathing issues — without inhalers that wear off
-            </p>
-          </div>
-          <div className="flex items-start gap-3">
-            <CheckCircle2 className="w-6 h-6 text-accent shrink-0 mt-0.5" />
-            <p className="text-muted-foreground">
-              Calmer, clearer skin without prescription creams or steroid treatments
-            </p>
-          </div>
-          <div className="flex items-start gap-3">
-            <CheckCircle2 className="w-6 h-6 text-accent shrink-0 mt-0.5" />
-            <p className="text-muted-foreground">
-              A complete mental reset without medication or supplements
-            </p>
-          </div>
-          <div className="flex items-start gap-3">
-            <CheckCircle2 className="w-6 h-6 text-accent shrink-0 mt-0.5" />
-            <p className="text-muted-foreground">
-              45 minutes in a natural salt room — no side effects, no recovery time
-            </p>
-          </div>
-          <div className="flex items-start gap-3">
-            <CheckCircle2 className="w-6 h-6 text-accent shrink-0 mt-0.5" />
-            <p className="text-muted-foreground">
-              Your first session comes with a free 15-minute consultation
-            </p>
-          </div>
-        </div>
-
-        {/* Benefits Section */}
-        <div id="why-halotherapy-works" className="pt-24 space-y-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground text-balance">
-            Why Halotherapy Works
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                title: 'Natural Relief',
-                description: 'Drug-free, side effect-free healing with salt therapy',
-                image: '/relief-natural.jpg',
-              },
-              {
-                title: 'Complete Wellness',
-                description: 'Address respiratory, skin, and mental health in one session',
-                image: '/skin-clarity.jpg',
-              },
-              {
-                title: 'Lasting Clarity',
-                description: 'Real, sustained improvements without constant treatment',
-                image: '/mental-clarity.jpg',
-              },
-            ].map((benefit, index) => (
-              <div
-                key={index}
-                className="bg-card border border-border rounded-lg overflow-hidden hover:border-accent/50 transition-colors"
+        {/* ── BULLET POINTS ── */}
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '12px',
+            width: '100%',
+            maxWidth: '560px',
+            marginBottom: '48px',
+          }}
+        >
+          {BULLETS.map((point, idx) => (
+            <div
+              key={idx}
+              style={{
+                display: 'flex',
+                alignItems: 'flex-start',
+                gap: '12px',
+                width: '100%',
+              }}
+            >
+              <CheckCircle2
+                style={{ flexShrink: 0, marginTop: '2px' }}
+                className="w-5 h-5 text-accent"
+              />
+              <p
+                style={{
+                  fontSize: 'clamp(0.85rem, 2vw, 1rem)',
+                  lineHeight: 1.6,
+                  wordBreak: 'break-word',
+                  overflowWrap: 'break-word',
+                  margin: 0,
+                }}
+                className="text-muted-foreground"
               >
-                <div className="relative h-48 w-full">
-                  <Image
-                    src={benefit.image}
-                    alt={benefit.title}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <div className="p-6">
-                  <h3 className="font-semibold text-foreground mb-2">{benefit.title}</h3>
-                  <p className="text-muted-foreground text-sm">{benefit.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+                {point}
+              </p>
+            </div>
+          ))}
         </div>
 
-        {/* CTA Button - Bottom */}
-        <div className="pt-8">
+        {/* ── WHY IT WORKS HEADER ── */}
+        <h2
+          id="why-halotherapy-works"
+          style={{
+            fontSize: 'clamp(1.4rem, 4vw, 2.25rem)',
+            fontWeight: 700,
+            textAlign: 'center',
+            marginBottom: '24px',
+            wordBreak: 'break-word',
+            width: '100%',
+          }}
+          className="text-foreground"
+        >
+          Why Halotherapy Works
+        </h2>
+
+        {/* ── BENEFIT CARDS ── */}
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
+            gap: '16px',
+            width: '100%',
+            marginBottom: '40px',
+          }}
+        >
+          {BENEFITS.map((benefit, index) => (
+            <div
+              key={index}
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                textAlign: 'center',
+                padding: '20px 16px',
+                borderRadius: '8px',
+                gap: '8px',
+              }}
+              className="bg-card border border-border hover:border-accent/50 transition-colors"
+            >
+              <h3
+                style={{
+                  fontWeight: 600,
+                  fontSize: '1rem',
+                  marginBottom: '4px',
+                }}
+                className="text-foreground"
+              >
+                {benefit.title}
+              </h3>
+              <p
+                style={{ fontSize: '0.875rem', lineHeight: 1.5 }}
+                className="text-muted-foreground"
+              >
+                {benefit.description}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        {/* ── BOTTOM CTA BUTTON ── */}
+        <div style={{ width: '100%' }}>
           <Button
             size="lg"
             onClick={handleStartQuiz}
-            className="h-12 px-8 text-base font-semibold hover:shadow-lg transition-shadow"
+            style={{
+              width: '100%',
+              minHeight: '52px',
+              fontSize: 'clamp(0.8rem, 2.5vw, 1rem)',
+              fontWeight: 600,
+              whiteSpace: 'normal',
+              lineHeight: 1.3,
+              padding: '12px 20px',
+              wordBreak: 'break-word',
+            }}
+            className="hover:shadow-lg transition-shadow"
           >
             👉 Click here to find out if halo therapy is for you 👈
           </Button>

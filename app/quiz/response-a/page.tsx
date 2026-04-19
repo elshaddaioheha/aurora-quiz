@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { useRouter } from '@/lib/router';
 import { Button } from '@/components/ui/button';
 import { useQuiz } from '@/lib/quiz-context';
-import { Calendar } from 'lucide-react';
+import { Calendar, ChevronLeft } from 'lucide-react';
 import { trackMetaEvent } from '@/components/meta-pixel';
 
 export default function ResponseA() {
@@ -31,6 +31,17 @@ export default function ResponseA() {
 
   return (
     <main className="min-h-screen bg-background text-foreground py-12">
+      {/* ── Top back button ── */}
+      <div className="max-w-3xl mx-auto px-4 pt-4 pb-0">
+        <button
+          onClick={() => router.push('/quiz/question-4')}
+          className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors group"
+          aria-label="Go back"
+        >
+          <ChevronLeft className="w-4 h-4 transition-transform group-hover:-translate-x-0.5" />
+          Back
+        </button>
+      </div>
       <div className="max-w-3xl mx-auto px-4 space-y-8">
         {/* Company Branding */}
         <div className="text-center pb-6 border-b border-border">
@@ -111,13 +122,7 @@ export default function ResponseA() {
           </div>
         )}
 
-        <Button
-          onClick={() => router.push('/quiz/question-4')}
-          variant="outline"
-          className="w-full py-6 rounded-full"
-        >
-          Back to Previous Question
-        </Button>
+
 
         {/* Info Section */}
         <div className="bg-card border border-border rounded-lg p-6 space-y-3">
