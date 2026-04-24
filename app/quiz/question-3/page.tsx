@@ -8,10 +8,14 @@ import { QuizProgress } from '@/components/quiz-progress';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const options = [
-  'Very important - I actively manage my health',
-  'Important - I try to maintain wellness routines',
-  'Somewhat important - I want to improve',
-  'Not very important - Just curious',
+  'Antihistamines / Allergy medications',
+  'Prescription inhalers',
+  'Steroid creams / Topical treatments',
+  'Nasal sprays / Decongestants',
+  'Supplements (Melatonin, Ashwagandha, Vitamin C, etc.)',
+  'Meditation apps / Breathing exercises',
+  'Dietary changes',
+  'Nothing yet',
 ];
 
 export default function Question3() {
@@ -48,9 +52,9 @@ export default function Question3() {
         <div className="space-y-8">
           <div className="space-y-4">
             <h1 className="text-3xl md:text-4xl font-serif font-bold text-foreground">
-              How important is wellness to you?
+              What have you already tried?
             </h1>
-            <p className="text-muted-foreground">Select the statement that resonates most</p>
+            <p className="text-muted-foreground">Multiple selections allowed</p>
           </div>
 
           {/* Options */}

@@ -44,7 +44,7 @@ export default function Question4() {
         <div className="space-y-8">
           <div className="space-y-4">
             <h1 className="text-3xl md:text-4xl font-serif font-bold text-foreground">
-              How ready are you to explore salt therapy?
+              How serious are you about finding a solution in the next 30 days?
             </h1>
             <p className="text-muted-foreground">Choose the statement that best matches where you are right now</p>
           </div>

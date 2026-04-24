@@ -76,13 +76,13 @@ export default function ResponseA() {
           <h2 className="font-semibold text-foreground">Your Assessment Summary</h2>
           <div className="space-y-2 text-sm text-muted-foreground">
             <p>
-              <strong>Primary Goals:</strong> {answers.question1?.join(', ') || 'N/A'}
+              <strong>Current condition:</strong> {answers.question1?.join(', ') || 'N/A'}
             </p>
             <p>
-              <strong>Health Concerns:</strong> {answers.question2?.join(', ') || 'N/A'}
+              <strong>How long it has been going on:</strong> {answers.question2?.join(', ') || 'N/A'}
             </p>
             <p>
-              <strong>Wellness Priority:</strong> {answers.question3?.[0] || 'N/A'}
+              <strong>What you have already tried:</strong> {answers.question3?.join(', ') || 'N/A'}
             </p>
           </div>
         </div>

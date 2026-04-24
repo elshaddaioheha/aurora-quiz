@@ -13,21 +13,6 @@ const BULLETS = [
   'Your first session comes with a free 15-minute consultation',
 ];
 
-const BENEFITS = [
-  {
-    title: 'Natural Relief',
-    description: 'Drug-free, side effect-free healing with salt therapy',
-  },
-  {
-    title: 'Complete Wellness',
-    description: 'Address respiratory, skin, and mental health in one session',
-  },
-  {
-    title: 'Lasting Clarity',
-    description: 'Real, sustained improvements without constant treatment',
-  },
-];
-
 export default function LandingPage() {
   const router = useRouter();
   const { resetQuiz } = useQuiz();
@@ -156,66 +141,6 @@ export default function LandingPage() {
                 className="text-muted-foreground"
               >
                 {point}
-              </p>
-            </div>
-          ))}
-        </div>
-
-        {/* ── WHY IT WORKS HEADER ── */}
-        <h2
-          id="why-halotherapy-works"
-          style={{
-            fontSize: 'clamp(1.4rem, 4vw, 2.25rem)',
-            fontWeight: 700,
-            textAlign: 'center',
-            marginBottom: '24px',
-            wordBreak: 'break-word',
-            width: '100%',
-          }}
-          className="text-foreground"
-        >
-          Why Halotherapy Works
-        </h2>
-
-        {/* ── BENEFIT CARDS ── */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
-            gap: '16px',
-            width: '100%',
-            marginBottom: '40px',
-          }}
-        >
-          {BENEFITS.map((benefit, index) => (
-            <div
-              key={index}
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                textAlign: 'center',
-                padding: '20px 16px',
-                borderRadius: '8px',
-                gap: '8px',
-              }}
-              className="bg-card border border-border hover:border-accent/50 transition-colors"
-            >
-              <h3
-                style={{
-                  fontWeight: 600,
-                  fontSize: '1rem',
-                  marginBottom: '4px',
-                }}
-                className="text-foreground"
-              >
-                {benefit.title}
-              </h3>
-              <p
-                style={{ fontSize: '0.875rem', lineHeight: 1.5 }}
-                className="text-muted-foreground"
-              >
-                {benefit.description}
               </p>
             </div>
           ))}

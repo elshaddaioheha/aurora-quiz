@@ -16,6 +16,7 @@ export default function Results() {
   const router = useRouter();
   const { answers } = useQuiz();
   const [messageIndex, setMessageIndex] = useState(0);
+  const [loadingDurationMs, setLoadingDurationMs] = useState(1800);
 
   /* Cycle through messages every 500 ms */
   useEffect(() => {
@@ -47,9 +48,18 @@ export default function Results() {
       C: '/quiz/response-c',
     };
 
+    const flowLoadingDuration = {
+      A: 450,
+      B: 1800,
+      C: 1800,
+    };
+
+    const duration = flowLoadingDuration[flow];
+    setLoadingDurationMs(duration);
+
     const timer = setTimeout(() => {
       router.replace(flowRoute[flow]);
-    }, 1800);
+    }, duration);
 
     return () => clearTimeout(timer);
   }, [answers.responseFlow, router]);
@@ -129,7 +139,7 @@ export default function Results() {
             style={{
               height: '100%',
               borderRadius: '9999px',
-              animation: 'progress-fill 1.8s ease-in-out forwards',
+              animation: `progress-fill ${loadingDurationMs}ms ease-in-out forwards`,
             }}
             className="bg-accent"
           />

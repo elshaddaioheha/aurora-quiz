@@ -8,31 +8,25 @@ import { QuizProgress } from '@/components/quiz-progress';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const options = [
-  'Yes, I have respiratory issues',
-  'Yes, I have chronic pain',
-  'Yes, I have skin concerns',
-  'Mild symptoms only',
-  'No specific health concerns',
+  'A few days',
+  'A few weeks',
+  'Several months',
+  'Over a year',
+  'Multiple years',
 ];
 
 export default function Question2() {
   const router = useRouter();
   const { answers, setAnswers } = useQuiz();
-  const [selected, setSelected] = useState<string[]>(answers.question2 || []);
+  const [selected, setSelected] = useState<string>(answers.question2?.[0] || '');
 
   const handleSelect = (option: string) => {
-    setSelected((prev) => {
-      if (prev.includes(option)) {
-        return prev.filter((item) => item !== option);
-      } else {
-        return [...prev, option];
-      }
-    });
+    setSelected(option);
   };
 
   const handleNext = () => {
-    if (selected.length > 0) {
-      setAnswers({ question2: selected });
+    if (selected) {
+      setAnswers({ question2: [selected] });
       router.push('/quiz/question-3');
     }
   };
@@ -49,9 +43,9 @@ export default function Question2() {
         <div className="space-y-8">
           <div className="space-y-4">
             <h1 className="text-3xl md:text-4xl font-serif font-bold text-foreground">
-              Do you have any specific health concerns?
+              How long have you been dealing with this?
             </h1>
-            <p className="text-muted-foreground">Select all that apply</p>
+            <p className="text-muted-foreground">Select one option</p>
           </div>
 
           {/* Options */}
@@ -61,7 +55,7 @@ export default function Question2() {
                 key={option}
                 onClick={() => handleSelect(option)}
                 className={`w-full p-4 text-left rounded-lg border-2 transition-all ${
-                  selected.includes(option)
+                  selected === option
                     ? 'border-accent bg-accent/10 text-foreground'
                     : 'border-border bg-card hover:border-accent/50'
                 }`}
@@ -69,12 +63,12 @@ export default function Question2() {
                 <div className="flex items-center gap-3">
                   <div
                     className={`w-6 h-6 rounded border-2 flex items-center justify-center transition-all ${
-                      selected.includes(option)
+                      selected === option
                         ? 'border-accent bg-accent'
                         : 'border-border'
                     }`}
                   >
-                    {selected.includes(option) && (
+                    {selected === option && (
                       <span className="text-accent-foreground font-bold">✓</span>
                     )}
                   </div>
@@ -96,7 +90,7 @@ export default function Question2() {
             </Button>
             <Button
               onClick={handleNext}
-              disabled={selected.length === 0}
+              disabled={!selected}
               className="flex-1 flex items-center justify-center gap-2 bg-accent hover:bg-accent/90 text-accent-foreground"
             >
               Next
