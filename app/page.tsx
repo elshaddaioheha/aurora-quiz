@@ -35,7 +35,7 @@ export default function LandingPage() {
         padding: '40px 16px 48px',
         boxSizing: 'border-box',
       }}
-      className="bg-gradient-to-br from-background via-background to-secondary/20"
+      className="bg-linear-to-br from-background via-background to-secondary/20"
     >
       {/* Inner content column — max 672 px, full width on mobile */}
       <div
