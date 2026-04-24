@@ -12,6 +12,7 @@ export default function ResponseB() {
   const router = useRouter();
   const { answers } = useQuiz();
   const [showVideo, setShowVideo] = useState(false);
+  const [redirectUrl, setRedirectUrl] = useState('');
 
   useEffect(() => {
     trackMetaEvent('ViewContent', {
@@ -20,6 +21,14 @@ export default function ResponseB() {
       response_flow: 'B',
     });
   }, []);
+
+  useEffect(() => {
+    setRedirectUrl(`${window.location.origin}/quiz/thank-you`);
+  }, []);
+
+  const calLink = redirectUrl
+    ? `aurorarecovery/halotherapy?redirectUrl=${encodeURIComponent(redirectUrl)}`
+    : 'aurorarecovery/halotherapy';
 
   const handleConsultationClick = () => {
     trackMetaEvent('Lead', {
@@ -82,7 +91,7 @@ export default function ResponseB() {
             </Button>
             <button
               onClick={handleConsultationClick}
-              data-cal-link="aurorarecovery/halotherapy"
+              data-cal-link={calLink}
               data-cal-namespace="halotherapy"
               data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":true,"theme":"light"}'
               className="flex-1 bg-accent hover:bg-accent/90 text-accent-foreground px-6 py-6 text-lg font-semibold rounded-full inline-flex items-center justify-center gap-2"

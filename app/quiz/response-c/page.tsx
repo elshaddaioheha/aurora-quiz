@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from '@/lib/router';
 import { Button } from '@/components/ui/button';
 import { useQuiz } from '@/lib/quiz-context';
@@ -10,6 +10,7 @@ import { trackMetaEvent } from '@/components/meta-pixel';
 export default function ResponseC() {
   const router = useRouter();
   const { answers } = useQuiz();
+  const [redirectUrl, setRedirectUrl] = useState('');
 
   useEffect(() => {
     trackMetaEvent('ViewContent', {
@@ -18,6 +19,14 @@ export default function ResponseC() {
       response_flow: 'C',
     });
   }, []);
+
+  useEffect(() => {
+    setRedirectUrl(`${window.location.origin}/quiz/thank-you`);
+  }, []);
+
+  const calLink = redirectUrl
+    ? `aurorarecovery/halotherapy?redirectUrl=${encodeURIComponent(redirectUrl)}`
+    : 'aurorarecovery/halotherapy';
 
   const handleBookingClick = () => {
     trackMetaEvent('Lead', {
@@ -89,7 +98,7 @@ export default function ResponseC() {
         <div className="flex gap-4">
           <button
             onClick={handleBookingClick}
-            data-cal-link="aurorarecovery/halotherapy"
+            data-cal-link={calLink}
             data-cal-namespace="halotherapy"
             data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":true,"theme":"light"}'
             className="flex-1 bg-accent hover:bg-accent/90 text-accent-foreground px-6 py-6 text-lg font-semibold rounded-full inline-flex items-center justify-center gap-2"
