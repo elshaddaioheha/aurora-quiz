@@ -8,11 +8,31 @@ import { trackMetaEvent } from '@/components/meta-pixel';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { useCalBookingHandoff } from '@/hooks/use-cal-booking-handoff';
 
+const commitmentMap = {
+  A: {
+    label: 'Just browsing',
+    resultType: 'browsing',
+    leadTemperature: 'Cold',
+  },
+  B: {
+    label: 'Somewhat interested',
+    resultType: 'interested',
+    leadTemperature: 'Warm',
+  },
+  C: {
+    label: 'Very ready to try something new',
+    resultType: 'ready',
+    leadTemperature: 'Hot',
+  },
+};
+
 export default function ResponseC() {
   const router = useRouter();
   const { answers } = useQuiz();
   const isMobile = useIsMobile();
   const redirectUrl = useCalBookingHandoff('halotherapy');
+  const flow = (answers.responseFlow || answers.question4) as 'A' | 'B' | 'C' | undefined;
+  const mapped = flow ? commitmentMap[flow] : undefined;
 
   useEffect(() => {
     trackMetaEvent('ViewContent', {
@@ -30,6 +50,15 @@ export default function ResponseC() {
     'ui.autoscroll': true,
     theme: 'light',
     useSlotsViewOnSmallScreen: true,
+    'metadata[condition]': answers.question1?.[0] || '',
+    'metadata[duration]': answers.question2?.[0] || '',
+    'metadata[triedBefore]': answers.question3?.join(', ') || '',
+    'metadata[commitment]': mapped?.label || '',
+    'metadata[responseFlow]': flow || '',
+    'metadata[resultType]': mapped?.resultType || '',
+    'metadata[leadTemperature]': mapped?.leadTemperature || '',
+    'metadata[leadSource]': 'Aurora Recovery Quiz',
+    'metadata[createdAt]': new Date().toISOString(),
   });
 
   const handleBookingClick = () => {
