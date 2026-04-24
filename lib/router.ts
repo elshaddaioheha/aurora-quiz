@@ -1,19 +1,35 @@
 'use client';
 
+import { useCallback, useMemo } from 'react';
 import { useRouter as useNextRouter } from 'next/navigation';
 
 export function useRouter() {
-  const router = useNextRouter();
+  const nextRouter = useNextRouter();
 
-  return {
-    push: (href: string) => {
-      router.push(href);
+  const push = useCallback(
+    (href: string) => {
+      nextRouter.push(href);
     },
-    replace: (href: string) => {
-      router.replace(href);
+    [nextRouter],
+  );
+
+  const replace = useCallback(
+    (href: string) => {
+      nextRouter.replace(href);
     },
-    back: () => {
-      router.back();
-    },
-  };
+    [nextRouter],
+  );
+
+  const back = useCallback(() => {
+    nextRouter.back();
+  }, [nextRouter]);
+
+  return useMemo(
+    () => ({
+      push,
+      replace,
+      back,
+    }),
+    [push, replace, back],
+  );
 }

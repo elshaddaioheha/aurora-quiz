@@ -7,12 +7,15 @@ import { Button } from '@/components/ui/button';
 import { useQuiz } from '@/lib/quiz-context';
 import { Calendar, ChevronLeft } from 'lucide-react';
 import { trackMetaEvent } from '@/components/meta-pixel';
+import { useIsMobile } from '@/hooks/use-mobile';
+import { useCalBookingHandoff } from '@/hooks/use-cal-booking-handoff';
 
 export default function ResponseB() {
   const router = useRouter();
   const { answers } = useQuiz();
+  const isMobile = useIsMobile();
   const [showVideo, setShowVideo] = useState(false);
-  const [redirectUrl, setRedirectUrl] = useState('');
+  const redirectUrl = useCalBookingHandoff('halotherapy');
 
   useEffect(() => {
     trackMetaEvent('ViewContent', {
@@ -22,13 +25,15 @@ export default function ResponseB() {
     });
   }, []);
 
-  useEffect(() => {
-    setRedirectUrl(`${window.location.origin}/quiz/thank-you`);
-  }, []);
-
   const calLink = redirectUrl
     ? `aurorarecovery/halotherapy?redirectUrl=${encodeURIComponent(redirectUrl)}`
     : 'aurorarecovery/halotherapy';
+  const calConfig = JSON.stringify({
+    layout: isMobile ? 'mobile' : 'month_view',
+    'ui.autoscroll': true,
+    theme: 'light',
+    useSlotsViewOnSmallScreen: true,
+  });
 
   const handleConsultationClick = () => {
     trackMetaEvent('Lead', {
@@ -93,7 +98,7 @@ export default function ResponseB() {
               onClick={handleConsultationClick}
               data-cal-link={calLink}
               data-cal-namespace="halotherapy"
-              data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":true,"theme":"light"}'
+              data-cal-config={calConfig}
               className="flex-1 bg-accent hover:bg-accent/90 text-accent-foreground px-6 py-6 text-lg font-semibold rounded-full inline-flex items-center justify-center gap-2"
             >
               <Calendar className="w-5 h-5" />
