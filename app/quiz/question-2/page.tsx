@@ -19,9 +19,16 @@ export default function Question2() {
   const router = useRouter();
   const { answers, setAnswers } = useQuiz();
   const [selected, setSelected] = useState<string>(answers.question2?.[0] || '');
+  const [isAdvancing, setIsAdvancing] = useState(false);
 
   const handleSelect = (option: string) => {
+    if (isAdvancing) return;
     setSelected(option);
+    setAnswers({ question2: [option] });
+    setIsAdvancing(true);
+    setTimeout(() => {
+      router.push('/quiz/question-3');
+    }, 120);
   };
 
   const handleNext = () => {
@@ -90,7 +97,7 @@ export default function Question2() {
             </Button>
             <Button
               onClick={handleNext}
-              disabled={!selected}
+              disabled={!selected || isAdvancing}
               className="flex-1 flex items-center justify-center gap-2 bg-accent hover:bg-accent/90 text-accent-foreground"
             >
               Next

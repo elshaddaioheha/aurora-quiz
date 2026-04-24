@@ -17,9 +17,19 @@ export default function Question4() {
   const router = useRouter();
   const { answers, setAnswers } = useQuiz();
   const [selected, setSelected] = useState<string>(answers.question4 || '');
+  const [isAdvancing, setIsAdvancing] = useState(false);
 
   const handleSelect = (value: string) => {
+    if (isAdvancing) return;
     setSelected(value);
+    setAnswers({
+      question4: value,
+      responseFlow: value as 'A' | 'B' | 'C',
+    });
+    setIsAdvancing(true);
+    setTimeout(() => {
+      router.push(`/quiz/results?flow=${value}`);
+    }, 120);
   };
 
   const handleNext = () => {
@@ -91,7 +101,7 @@ export default function Question4() {
             </Button>
             <Button
               onClick={handleNext}
-              disabled={!selected}
+              disabled={!selected || isAdvancing}
               className="flex-1 flex items-center justify-center gap-2 bg-accent hover:bg-accent/90 text-accent-foreground"
             >
               Continue

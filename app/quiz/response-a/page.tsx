@@ -105,17 +105,16 @@ export default function ResponseA() {
         <div className="grid gap-4 md:grid-cols-2">
           <Button
             onClick={() => setShowVideo((current) => !current)}
-            variant="outline"
-            className="w-full py-6 rounded-full"
+            className="w-full min-h-14 h-auto bg-accent hover:bg-accent/90 text-accent-foreground py-4 px-5 rounded-full whitespace-normal text-center leading-snug"
           >
-            Learn how halo therapy works
+            See how halo therapy works
           </Button>
           <button
             onClick={handleConsultationClick}
             data-cal-link={calLink}
             data-cal-namespace="halotherapy"
             data-cal-config={calConfig}
-            className="w-full bg-accent hover:bg-accent/90 text-accent-foreground px-6 py-6 text-lg font-semibold rounded-full inline-flex items-center justify-center gap-2"
+            className="w-full min-h-14 h-auto border-2 border-border bg-card hover:border-accent/40 text-foreground px-5 py-4 text-base sm:text-lg font-semibold rounded-full inline-flex items-center justify-center gap-2 whitespace-normal text-center leading-snug transition-colors"
           >
             <Calendar className="w-5 h-5" />
             Get a Free 15-Minute Salt Therapy Consultation

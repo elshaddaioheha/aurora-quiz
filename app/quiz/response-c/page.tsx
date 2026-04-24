@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from '@/lib/router';
-import { Button } from '@/components/ui/button';
 import { useQuiz } from '@/lib/quiz-context';
 import { Calendar, ChevronLeft } from 'lucide-react';
 import { trackMetaEvent } from '@/components/meta-pixel';
@@ -64,8 +63,8 @@ export default function ResponseC() {
         {/* Header */}
         <div className="space-y-4">
           <h1 className="text-4xl md:text-5xl font-serif font-bold text-foreground">Very ready to try something new?</h1>
-          <p className="text-lg text-muted-foreground">
-            You&apos;ve unlocked a free 15-minute salt therapy consultation with your first session at Aurora Recovery OT in Katy, TX.
+          <p className="text-lg text-muted-foreground animate-unlocked-shake">
+            You&apos;ve unlocked a Free 15-Minute Salt Therapy Consultation with your first session at Aurora Recovery OT in Katy, TX. Our team will walk you through exactly what to expect and make sure halotherapy is the right fit for you before you begin.
           </p>
         </div>
 
@@ -100,34 +99,24 @@ export default function ResponseC() {
         </div>
 
         {/* CTA */}
-        <div className="flex gap-4">
+        <div className="flex">
           <button
             onClick={handleBookingClick}
             data-cal-link={calLink}
             data-cal-namespace="halotherapy"
             data-cal-config={calConfig}
-            className="flex-1 bg-accent hover:bg-accent/90 text-accent-foreground px-6 py-6 text-lg font-semibold rounded-full inline-flex items-center justify-center gap-2"
+            className="w-full min-h-14 h-auto bg-accent hover:bg-accent/90 text-accent-foreground px-5 py-4 text-base sm:text-lg font-semibold rounded-full inline-flex items-center justify-center gap-2 whitespace-normal text-center leading-snug"
           >
             <Calendar className="w-5 h-5" />
             Book Your First Session Now
           </button>
-          <Button
-            onClick={() => router.push('/quiz')}
-            variant="outline"
-            className="flex-1 py-6 rounded-full"
-          >
-            Retake Quiz
-          </Button>
         </div>
 
         {/* Info Section */}
         <div className="bg-card border border-border rounded-lg p-6 space-y-3">
-          <h3 className="font-semibold text-foreground">You&apos;re ready</h3>
-          <p className="text-sm text-muted-foreground">
-            Your team will walk you through exactly what to expect and make sure halotherapy is the right fit for you before you begin.
-          </p>
+          <h3 className="font-semibold text-foreground">What happens next</h3>
           <ol className="list-decimal list-inside space-y-2 text-sm text-muted-foreground">
-            <li>Book your first session now</li>
+            <li>Tap Book Your First Session Now</li>
             <li>Fill in your information on the booking flow</li>
             <li>Confirm the appointment and get your consultation scheduled</li>
           </ol>
@@ -145,6 +134,48 @@ export default function ResponseC() {
 
 
       </div>
+
+      <style jsx>{`
+        .animate-unlocked-shake {
+          display: inline-block;
+          transform-origin: center;
+          animation: unlocked-shake 2.8s ease-in-out infinite;
+        }
+
+        @keyframes unlocked-shake {
+          0%,
+          65%,
+          100% {
+            transform: translateX(0) rotate(0deg);
+          }
+
+          70% {
+            transform: translateX(-1px) rotate(-0.5deg);
+          }
+
+          75% {
+            transform: translateX(1px) rotate(0.5deg);
+          }
+
+          80% {
+            transform: translateX(-1px) rotate(-0.4deg);
+          }
+
+          85% {
+            transform: translateX(1px) rotate(0.4deg);
+          }
+
+          90% {
+            transform: translateX(0) rotate(0deg);
+          }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .animate-unlocked-shake {
+            animation: none;
+          }
+        }
+      `}</style>
 
     </main>
   );

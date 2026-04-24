@@ -67,43 +67,56 @@ export default function ResponseB() {
         <div className="space-y-4">
           <h1 className="text-4xl md:text-5xl font-serif font-bold text-foreground">Somewhat interested?</h1>
           <p className="text-lg text-muted-foreground">
-            Watch what your first session looks like, then decide whether to book a free consultation.
+            Here&apos;s exactly what your first halotherapy session at Aurora Recovery will look like:
           </p>
         </div>
 
-        {/* Benefits Section */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-8">
-          {[
-            { title: 'See the Experience', desc: 'Watch a real first-session walkthrough' },
-            { title: 'Ask Questions', desc: 'Use the consultation to get clarity' },
-            { title: 'Move at Your Pace', desc: 'Explore before you commit' },
-          ].map((benefit, idx) => (
-            <div key={idx} className="bg-card border border-border rounded-lg p-6">
-              <h3 className="font-semibold text-foreground mb-2">{benefit.title}</h3>
-              <p className="text-sm text-muted-foreground">{benefit.desc}</p>
-            </div>
-          ))}
+        {/* Session Walkthrough */}
+        <div className="bg-card border border-border rounded-lg p-6 space-y-4">
+          <h2 className="text-xl font-semibold text-foreground">Session Walkthrough</h2>
+          <ol className="space-y-3 text-sm sm:text-base text-muted-foreground">
+            <li>
+              <span className="font-semibold text-foreground">Step 1 — </span>
+              You arrive and are welcomed into a calm, dimly lit salt room designed to feel like a natural salt cave.
+            </li>
+            <li>
+              <span className="font-semibold text-foreground">Step 2 — </span>
+              You sit back in a comfortable chair. Soft music plays. There are no screens, no distractions.
+            </li>
+            <li>
+              <span className="font-semibold text-foreground">Step 3 — </span>
+              A halogenerator quietly grinds pharmaceutical-grade salt into microscopic particles and disperses them into the air.
+            </li>
+            <li>
+              <span className="font-semibold text-foreground">Step 4 — </span>
+              You simply breathe normally. The salt particles travel deep into your airways, settle on your skin, and begin working naturally.
+            </li>
+            <li>
+              <span className="font-semibold text-foreground">Step 5 — </span>
+              45 minutes later you walk out. Airways clearer. Skin calmer. Mind lighter.
+            </li>
+          </ol>
         </div>
 
         <div className="bg-card border border-border rounded-lg p-6 space-y-4">
-          <div className="flex flex-col sm:flex-row gap-3">
-            <Button
-              onClick={() => setShowVideo((current) => !current)}
-              variant="outline"
-              className="flex-1 py-6 rounded-full"
-            >
-              Here&apos;s exactly what your first session looks like
-            </Button>
+          <div className="flex flex-col gap-3">
             <button
               onClick={handleConsultationClick}
               data-cal-link={calLink}
               data-cal-namespace="halotherapy"
               data-cal-config={calConfig}
-              className="flex-1 bg-accent hover:bg-accent/90 text-accent-foreground px-6 py-6 text-lg font-semibold rounded-full inline-flex items-center justify-center gap-2"
+              className="w-full min-h-14 h-auto bg-accent hover:bg-accent/90 text-accent-foreground px-5 py-4 text-base sm:text-lg font-semibold rounded-full inline-flex items-center justify-center gap-2 whitespace-normal text-center leading-snug"
             >
               <Calendar className="w-5 h-5" />
               Get a Free 15-Minute Salt Therapy Consultation
             </button>
+            <Button
+              onClick={() => setShowVideo((current) => !current)}
+              variant="ghost"
+              className="w-full h-auto py-2 text-sm sm:text-base font-medium text-muted-foreground hover:text-foreground"
+            >
+              Learn more about how it works
+            </Button>
           </div>
 
           {showVideo && (
