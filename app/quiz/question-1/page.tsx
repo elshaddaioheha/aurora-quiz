@@ -19,17 +19,17 @@ const options = [
 export default function Question1() {
   const router = useRouter();
   const { answers, setAnswers } = useQuiz();
-  const [selected, setSelected] = useState<string>(answers.question1?.[0] || '');
+  const [selected, setSelected] = useState<string>(answers.question1 || '');
 
   const handleSelect = (option: string) => {
     setSelected(option);
-    setAnswers({ question1: [option] });
+    setAnswers({ question1: option });
     router.push('/quiz/question-2');
   };
 
   const handleNext = () => {
     if (selected) {
-      setAnswers({ question1: [selected] });
+      setAnswers({ question1: selected });
       router.push('/quiz/question-2');
     }
   };

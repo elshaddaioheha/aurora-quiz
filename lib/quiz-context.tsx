@@ -3,9 +3,9 @@
 import React, { createContext, useContext, useState } from 'react';
 
 export interface QuizAnswers {
-  question1?: string[];
-  question2?: string[];
-  question3?: string[];
+  question1?: string;
+  question2?: string;
+  question3?: string;
   question4?: string;
   responseFlow?: 'A' | 'B' | 'C';
 }

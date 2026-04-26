@@ -50,9 +50,9 @@ export default function ResponseC() {
     'ui.autoscroll': true,
     theme: 'light',
     useSlotsViewOnSmallScreen: true,
-    'metadata[condition]': answers.question1?.[0] || '',
-    'metadata[duration]': answers.question2?.[0] || '',
-    'metadata[triedBefore]': answers.question3?.join(', ') || '',
+    'metadata[condition]': answers.question1 || '',
+    'metadata[duration]': answers.question2 || '',
+    'metadata[triedBefore]': answers.question3 || '',
     'metadata[commitment]': mapped?.label || '',
     'metadata[responseFlow]': flow || '',
     'metadata[resultType]': mapped?.resultType || '',
@@ -96,13 +96,13 @@ export default function ResponseC() {
           <h2 className="font-semibold text-foreground">Your Assessment Summary</h2>
           <div className="space-y-2 text-sm text-muted-foreground">
             <p>
-              <strong>Current condition:</strong> {answers.question1?.join(', ') || 'N/A'}
+              <strong>Current condition:</strong> {answers.question1 || 'N/A'}
             </p>
             <p>
-              <strong>How long it has been going on:</strong> {answers.question2?.join(', ') || 'N/A'}
+              <strong>How long it has been going on:</strong> {answers.question2 || 'N/A'}
             </p>
             <p>
-              <strong>What you have already tried:</strong> {answers.question3?.join(', ') || 'N/A'}
+              <strong>What you have already tried:</strong> {answers.question3 || 'N/A'}
             </p>
           </div>
         </div>
