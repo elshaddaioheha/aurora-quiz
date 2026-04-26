@@ -86,32 +86,12 @@ export default function ResponseA() {
         </button>
       </div>
       <div className="max-w-3xl mx-auto px-4 space-y-8">
-        {/* Company Branding */}
-        <div className="text-center pb-6 border-b border-border">
-          <h2 className="text-2xl font-bold text-accent">Aurora Recovery</h2>
-          <p className="text-sm text-muted-foreground mt-1">Your Wellness Experts in Katy, TX</p>
-        </div>
-
         {/* Header */}
         <div className="space-y-4">
           <h1 className="text-4xl md:text-5xl font-serif font-bold text-foreground">Just browsing?</h1>
           <p className="text-lg text-muted-foreground">
             Start by learning how halo therapy works, or skip ahead to a free consultation.
           </p>
-        </div>
-
-        {/* Benefits Section */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-8">
-          {[
-            { title: 'Learn the Basics', desc: 'See how the salt room experience works' },
-            { title: 'No Pressure', desc: 'Explore first, decide later' },
-            { title: 'Quick Next Step', desc: 'Book a free 15-minute consultation' },
-          ].map((benefit, idx) => (
-            <div key={idx} className="bg-card border border-border rounded-lg p-6">
-              <h3 className="font-semibold text-foreground mb-2">{benefit.title}</h3>
-              <p className="text-sm text-muted-foreground">{benefit.desc}</p>
-            </div>
-          ))}
         </div>
 
         {/* Quiz Summary */}
@@ -163,18 +143,6 @@ export default function ResponseA() {
             </div>
           </div>
         )}
-
-
-
-        {/* Info Section */}
-        <div className="bg-card border border-border rounded-lg p-6 space-y-3">
-          <h3 className="font-semibold text-foreground">What happens next</h3>
-          <ol className="list-decimal list-inside space-y-2 text-sm text-muted-foreground">
-            <li>Learn the basics of halo therapy</li>
-            <li>Book a free 15-minute consultation if you want to talk to our team</li>
-            <li>Choose the next step that feels right for you</li>
-          </ol>
-        </div>
       </div>
 
     </main>

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useRouter } from '@/lib/router';
 import { useQuiz } from '@/lib/quiz-context';
 import { Calendar, ChevronLeft } from 'lucide-react';
@@ -83,32 +83,12 @@ export default function ResponseC() {
         </button>
       </div>
       <div className="max-w-3xl mx-auto px-4 space-y-8">
-        {/* Company Branding */}
-        <div className="text-center pb-6 border-b border-border">
-          <h2 className="text-2xl font-bold text-accent">Aurora Recovery</h2>
-          <p className="text-sm text-muted-foreground mt-1">Your Wellness Experts in Katy, TX</p>
-        </div>
-
         {/* Header */}
         <div className="space-y-4">
-          <h1 className="text-4xl md:text-5xl font-serif font-bold text-foreground">Very ready to try something new?</h1>
-          <p className="text-lg text-muted-foreground animate-unlocked-shake">
-            You&apos;ve unlocked a Free 15-Minute Salt Therapy Consultation with your first session at Aurora Recovery OT in Katy, TX. Our team will walk you through exactly what to expect and make sure halotherapy is the right fit for you before you begin.
+          <h1 className="text-4xl md:text-5xl font-serif font-bold text-foreground">Your personalized next step</h1>
+          <p className="text-lg text-muted-foreground">
+            Book a free 15-minute salt therapy consultation to walk through what to expect and decide whether halotherapy is the right fit for your goals.
           </p>
-        </div>
-
-        {/* Benefits Section */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-8">
-          {[
-            { title: 'Free Consultation', desc: 'Walk through your goals before your first visit' },
-            { title: 'First Session Clarity', desc: 'Know exactly what to expect when you arrive' },
-            { title: 'Fastest Path Forward', desc: 'Book now and get moving today' },
-          ].map((benefit, idx) => (
-            <div key={idx} className="bg-card border border-border rounded-lg p-6">
-              <h3 className="font-semibold text-foreground mb-2">{benefit.title}</h3>
-              <p className="text-sm text-muted-foreground">{benefit.desc}</p>
-            </div>
-          ))}
         </div>
 
         {/* Quiz Summary */}
@@ -141,71 +121,7 @@ export default function ResponseC() {
           </button>
         </div>
 
-        {/* Info Section */}
-        <div className="bg-card border border-border rounded-lg p-6 space-y-3">
-          <h3 className="font-semibold text-foreground">What happens next</h3>
-          <ol className="list-decimal list-inside space-y-2 text-sm text-muted-foreground">
-            <li>Tap Book Your First Session Now</li>
-            <li>Fill in your information on the booking flow</li>
-            <li>Confirm the appointment and get your consultation scheduled</li>
-          </ol>
-        </div>
-
-        {/* Exclusive Offering */}
-        <div className="border-2 border-accent rounded-lg p-6 bg-accent/5 space-y-3">
-          <h3 className="font-semibold text-foreground text-lg">What you just unlocked</h3>
-          <ul className="space-y-2 text-sm text-muted-foreground list-disc list-inside">
-            <li>Free 15-minute salt therapy consultation</li>
-            <li>A guided first visit at Aurora Recovery OT in Katy, TX</li>
-            <li>A clear understanding of what to expect before treatment begins</li>
-          </ul>
-        </div>
-
-
       </div>
-
-      <style jsx>{`
-        .animate-unlocked-shake {
-          display: inline-block;
-          transform-origin: center;
-          animation: unlocked-shake 2.8s ease-in-out infinite;
-        }
-
-        @keyframes unlocked-shake {
-          0%,
-          65%,
-          100% {
-            transform: translateX(0) rotate(0deg);
-          }
-
-          70% {
-            transform: translateX(-1px) rotate(-0.5deg);
-          }
-
-          75% {
-            transform: translateX(1px) rotate(0.5deg);
-          }
-
-          80% {
-            transform: translateX(-1px) rotate(-0.4deg);
-          }
-
-          85% {
-            transform: translateX(1px) rotate(0.4deg);
-          }
-
-          90% {
-            transform: translateX(0) rotate(0deg);
-          }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-          .animate-unlocked-shake {
-            animation: none;
-          }
-        }
-      `}</style>
-
     </main>
   );
 }
