@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { useQuiz } from '@/lib/quiz-context';
 import { QuizProgress } from '@/components/quiz-progress';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft } from 'lucide-react';
 
 const options = [
   'Allergies / Congestion / Breathing difficulties',
@@ -25,13 +25,6 @@ export default function Question1() {
     setSelected(option);
     setAnswers({ question1: option });
     router.push('/quiz/question-2');
-  };
-
-  const handleNext = () => {
-    if (selected) {
-      setAnswers({ question1: selected });
-      router.push('/quiz/question-2');
-    }
   };
 
   const handleBack = () => {
@@ -74,22 +67,14 @@ export default function Question1() {
           </RadioGroup>
 
           {/* Navigation */}
-          <div className="flex gap-3 pt-8">
+          <div className="pt-8">
             <Button
               onClick={handleBack}
               variant="outline"
-              className="flex-1 flex items-center justify-center gap-2"
+              className="w-full flex items-center justify-center gap-2"
             >
               <ChevronLeft className="w-4 h-4" />
               Back
-            </Button>
-            <Button
-              onClick={handleNext}
-              disabled={!selected}
-              className="flex-1 flex items-center justify-center gap-2 bg-accent hover:bg-accent/90 text-accent-foreground"
-            >
-              Next
-              <ChevronRight className="w-4 h-4" />
             </Button>
           </div>
         </div>

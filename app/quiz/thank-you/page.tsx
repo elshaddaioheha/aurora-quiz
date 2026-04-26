@@ -4,7 +4,6 @@ import { useEffect } from 'react';
 import { useRouter } from '@/lib/router';
 import { Button } from '@/components/ui/button';
 import { CheckCircle, Phone, MapPin } from 'lucide-react';
-import Script from 'next/script';
 
 const PIXEL_ID = '2498497057335985';
 const MAPS_URL = 'https://www.google.com/maps/search/?api=1&query=605%20A%20Park%20Grove%20Dr%2C%20Katy%2C%20TX%2077450';
@@ -21,14 +20,6 @@ export default function ThankYou() {
 
   return (
     <main className="min-h-screen bg-background text-foreground py-8 sm:py-12">
-      {/* Facebook Pixel Lead Event */}
-      <Script id="meta-pixel-lead" strategy="afterInteractive">
-        {`
-          if(typeof fbq !== 'undefined') {
-            fbq('track', 'Lead');
-          }
-        `}
-      </Script>
       <noscript>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img

@@ -49,26 +49,27 @@ export default function Question3() {
 
           {/* Options */}
           <div className="space-y-3">
-          <RadioGroup value={selected} onValueChange={handleSelect} className="space-y-3">
-            {options.map((option) => (
-              <label
-                key={option}
-                htmlFor={`question-3-${option}`}
-                className={`w-full p-4 text-left rounded-lg border-2 transition-all cursor-pointer flex items-center gap-3 ${
-                  selected === option
-                    ? 'border-accent bg-accent/10 text-foreground'
-                    : 'border-border bg-card hover:border-accent/50'
-                }`}
-              >
-                <RadioGroupItem
-                  id={`question-3-${option}`}
-                  value={option}
-                  className="size-5 border-2 data-[state=checked]:border-accent data-[state=checked]:text-accent"
-                />
-                <span className="font-medium">{option}</span>
-              </label>
-            ))}
-          </RadioGroup>
+            <RadioGroup value={selected} onValueChange={handleSelect} className="space-y-3">
+              {options.map((option) => (
+                <label
+                  key={option}
+                  htmlFor={`question-3-${option}`}
+                  className={`w-full p-4 text-left rounded-lg border-2 transition-all cursor-pointer flex items-center gap-3 ${
+                    selected === option
+                      ? 'border-accent bg-accent/10 text-foreground'
+                      : 'border-border bg-card hover:border-accent/50'
+                  }`}
+                >
+                  <RadioGroupItem
+                    id={`question-3-${option}`}
+                    value={option}
+                    className="size-5 border-2 data-[state=checked]:border-accent data-[state=checked]:text-accent"
+                  />
+                  <span className="font-medium">{option}</span>
+                </label>
+              ))}
+            </RadioGroup>
+          </div>
 
           {/* Navigation */}
           <div className="flex gap-3 pt-8">
