@@ -86,12 +86,6 @@ export default function ResponseB() {
         </button>
       </div>
       <div className="max-w-3xl mx-auto px-4 space-y-8">
-        {/* Company Branding */}
-        <div className="text-center pb-6 border-b border-border">
-          <h2 className="text-2xl font-bold text-accent">Aurora Recovery</h2>
-          <p className="text-sm text-muted-foreground mt-1">Your Wellness Experts in Katy, TX</p>
-        </div>
-
         {/* Header */}
         <div className="space-y-4">
           <h1 className="text-4xl md:text-5xl font-serif font-bold text-foreground">Somewhat interested?</h1>
@@ -178,17 +172,6 @@ export default function ResponseB() {
             </p>
           </div>
         </div>
-
-        {/* Info Section */}
-        <div className="bg-card border border-border rounded-lg p-6 space-y-3">
-          <h3 className="font-semibold text-foreground">Your next step</h3>
-          <ol className="list-decimal list-inside space-y-2 text-sm text-muted-foreground">
-            <li>Watch the session walkthrough if you want a clearer picture</li>
-            <li>Book the free 15-minute consultation when you&apos;re ready</li>
-            <li>Use the consultation to decide whether halotherapy fits your goals</li>
-          </ol>
-        </div>
-
 
       </div>
 
