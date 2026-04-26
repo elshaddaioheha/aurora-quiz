@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from '@/lib/router';
 import { Button } from '@/components/ui/button';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { useQuiz } from '@/lib/quiz-context';
 import { QuizProgress } from '@/components/quiz-progress';
 import { ChevronLeft } from 'lucide-react';
@@ -51,34 +52,26 @@ export default function Question4() {
           </div>
 
           {/* Options */}
-          <div className="space-y-4">
+          <RadioGroup value={selected} onValueChange={handleSelect} className="space-y-3">
             {options.map((option) => (
-              <button
+              <label
                 key={option.value}
-                onClick={() => handleSelect(option.value)}
-                className={`w-full p-6 text-left rounded-lg border-2 transition-all ${
+                htmlFor={`question-4-${option.value}`}
+                className={`w-full p-4 text-left rounded-lg border-2 transition-all cursor-pointer flex items-center gap-3 ${
                   selected === option.value
                     ? 'border-accent bg-accent/10 text-foreground'
                     : 'border-border bg-card hover:border-accent/50'
                 }`}
               >
-                <div className="flex items-center gap-3">
-                  <div
-                    className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all ${
-                      selected === option.value
-                        ? 'border-accent bg-accent'
-                        : 'border-border'
-                    }`}
-                  >
-                    {selected === option.value && (
-                      <span className="text-accent-foreground text-xs font-bold">●</span>
-                    )}
-                  </div>
-                  <span className="font-semibold text-lg">{option.label}</span>
-                </div>
-              </button>
+                <RadioGroupItem
+                  id={`question-4-${option.value}`}
+                  value={option.value}
+                  className="size-5 border-2 data-[state=checked]:border-accent data-[state=checked]:text-accent"
+                />
+                <span className="font-medium">{option.label}</span>
+              </label>
             ))}
-          </div>
+          </RadioGroup>
 
           {/* Navigation */}
           <div className="pt-8">
