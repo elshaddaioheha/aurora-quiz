@@ -5,7 +5,7 @@ import { useRouter } from '@/lib/router';
 import { Button } from '@/components/ui/button';
 import { useQuiz } from '@/lib/quiz-context';
 import { QuizProgress } from '@/components/quiz-progress';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft } from 'lucide-react';
 
 const options = [
   'Antihistamines / Allergy medications',
@@ -21,23 +21,12 @@ const options = [
 export default function Question3() {
   const router = useRouter();
   const { answers, setAnswers } = useQuiz();
-  const [selected, setSelected] = useState<string[]>(answers.question3 || []);
+  const [selected, setSelected] = useState<string>(answers.question3?.[0] || '');
 
   const handleSelect = (option: string) => {
-    setSelected((prev) => {
-      if (prev.includes(option)) {
-        return prev.filter((item) => item !== option);
-      } else {
-        return [...prev, option];
-      }
-    });
-  };
-
-  const handleNext = () => {
-    if (selected.length > 0) {
-      setAnswers({ question3: selected });
-      router.push('/quiz/question-4');
-    }
+    setSelected(option);
+    setAnswers({ question3: [option] });
+    router.push('/quiz/question-4');
   };
 
   const handleBack = () => {
@@ -54,7 +43,7 @@ export default function Question3() {
             <h1 className="text-3xl md:text-4xl font-serif font-bold text-foreground">
               What have you already tried?
             </h1>
-            <p className="text-muted-foreground">Multiple selections allowed</p>
+            <p className="text-muted-foreground">Select one option</p>
           </div>
 
           {/* Options */}
@@ -64,7 +53,7 @@ export default function Question3() {
                 key={option}
                 onClick={() => handleSelect(option)}
                 className={`w-full p-4 text-left rounded-lg border-2 transition-all ${
-                  selected.includes(option)
+                  selected === option
                     ? 'border-accent bg-accent/10 text-foreground'
                     : 'border-border bg-card hover:border-accent/50'
                 }`}
@@ -72,12 +61,12 @@ export default function Question3() {
                 <div className="flex items-center gap-3">
                   <div
                     className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all ${
-                      selected.includes(option)
+                      selected === option
                         ? 'border-accent bg-accent'
                         : 'border-border'
                     }`}
                   >
-                    {selected.includes(option) && (
+                    {selected === option && (
                       <span className="text-accent-foreground text-xs font-bold">●</span>
                     )}
                   </div>
@@ -92,18 +81,10 @@ export default function Question3() {
             <Button
               onClick={handleBack}
               variant="outline"
-              className="flex-1 flex items-center justify-center gap-2"
+              className="w-full flex items-center justify-center gap-2"
             >
               <ChevronLeft className="w-4 h-4" />
               Back
-            </Button>
-            <Button
-              onClick={handleNext}
-              disabled={selected.length === 0}
-              className="flex-1 flex items-center justify-center gap-2 bg-accent hover:bg-accent/90 text-accent-foreground"
-            >
-              Next
-              <ChevronRight className="w-4 h-4" />
             </Button>
           </div>
         </div>
