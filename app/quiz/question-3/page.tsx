@@ -48,13 +48,13 @@ export default function Question3() {
           </div>
 
           {/* Options */}
-          <div className="space-y-3">
-            <RadioGroup value={selected} onValueChange={handleSelect} className="space-y-3">
+          <div className="space-y-4">
+            <RadioGroup value={selected} onValueChange={handleSelect} className="space-y-4">
               {options.map((option) => (
                 <label
                   key={option}
                   htmlFor={`question-3-${option}`}
-                  className={`w-full p-4 text-left rounded-lg border-2 transition-all cursor-pointer flex items-center gap-3 ${
+                  className={`w-full p-6 text-left rounded-lg border-2 transition-all cursor-pointer flex items-center gap-3 ${
                     selected === option
                       ? 'border-accent bg-accent/10 text-foreground'
                       : 'border-border bg-card hover:border-accent/50'
@@ -65,7 +65,7 @@ export default function Question3() {
                     value={option}
                     className="size-5 border-2 data-[state=checked]:border-accent data-[state=checked]:text-accent"
                   />
-                  <span className="font-medium">{option}</span>
+                  <span className="font-semibold text-lg">{option}</span>
                 </label>
               ))}
             </RadioGroup>
